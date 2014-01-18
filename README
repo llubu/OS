@@ -25,16 +25,6 @@ Things Implemented:
 	f. printf, scanf
 
 
-Things to be Implemented:
-
-1. cd
-2. ulimit
-3. shebang
-4. execvep
-5. ls
-6. sleep
-7. &
-
 *******************************************************************************
 qemu-system-x86_64 -curses -cdrom $USER.iso -drive id=disk,file=$USER.img,if=none -device ahci,id=ahci -device ide-drive,drive=disk,bus=ahci.0 -gdb tcp::NNNN
 
