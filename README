@@ -1,0 +1,89 @@
+Things Implemented:
+
+1. Preemptive OS (scheduling of processes on timer interrupt)
+2. Virtual Memeory Manager 
+3. Paging 4KB pages
+4. Process management (process creation, VMA)
+5. fork
+6. Yield()
+7. Execve()
+8. Copy on write handling on fork
+9. User Stack with limit of 32kb
+10. SEGV handling
+11. Tarfs handling
+12. stdin, stdout, stderr
+13. read(), write()
+14. Binaries: ps, shell
+15. Libc:
+	a. User space malloc with local handling(makes syscall only when not enough memory locally)
+	b. fork user space
+	c. execve() execvep **NOT IMPLEMENTED**
+	d. wait, waitpid, exit, getpid
+	e. open, close, read, opendir, closedir, readdir
+	f. printf, scanf
+
+
+Things **NOT** Implemented:
+
+1. cd
+2. ulimit
+3. shebang
+4. execvep
+5. ls
+6. sleep
+7. &
+
+
+*******************************************************************************
+How to test:
+
+1. There is a hello binary in /bin/hello which demonstrates fork from shell --> execve() to hello --> fork in hello --> then PREMPTIVE scheduling between CHILD & PARENT of hello.
+   - The hello binary prints continious "PARENT" in a while loop when in PARENT process and prints continious "CHILD" in while loop when in child.
+
+TO USE hello:
+	Type bin/hello in shell prompt it will start printing PARENT in while loop till the next timer interript after then it will start printing CHILD in a while loop
+
+
+2. The timer tic frequency can be adjusted in /sys/irq.c in timer handler function which starts ar line no:173
+3. Kernel Paging/Self Refrencing is implemented in /sys/kern_pagetable.c
+4. Physical memory managements(creation of free list etc.) are implemented in pmem_manager.c 
+5. Keyboard, timer handler are implemented in /sys/irq.c
+6. Page fault, GPF, SEGV, INT 50 system call handler are implemnted in /sys/isr.c
+7. The execve is implemented in /sys/execve.c
+8. exit(), wait, waitpid, ps are implemented in /sys/process_que.c
+8. Virtual memory management is implementes in /sys/v_mem_manager.c
+9. Process Management is implemented in /sys/task_managemnt.c
+10. Scheduler is implemented in /sys/task_switch.c
+11. libc header files are in /include/libc
+12. libc system call wrappers are implemented in libc folder
+
+
+**********************************************************************************
+
+Some Issues:
+
+1. Shell has some issues because of which binaries or system call testing may give some issues.
+2. There are Memory leaks in the code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+qemu-system-x86_64 -curses -cdrom $USER.iso -drive id=disk,file=$USER.img,if=none -device ahci,id=ahci -device ide-drive,drive=disk,bus=ahci.0 -gdb tcp::NNNN
+
