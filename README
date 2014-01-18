@@ -1,3 +1,5 @@
+A basic x86_64 bit kernel implementation.
+
 Things Implemented:
 
 1. Preemptive OS (scheduling of processes on timer interrupt)
@@ -23,7 +25,7 @@ Things Implemented:
 	f. printf, scanf
 
 
-Things **NOT** Implemented:
+Things to be Implemented:
 
 1. cd
 2. ulimit
@@ -32,6 +34,11 @@ Things **NOT** Implemented:
 5. ls
 6. sleep
 7. &
+
+*******************************************************************************
+qemu-system-x86_64 -curses -cdrom $USER.iso -drive id=disk,file=$USER.img,if=none -device ahci,id=ahci -device ide-drive,drive=disk,bus=ahci.0 -gdb tcp::NNNN
+
+
 
 
 *******************************************************************************
@@ -60,30 +67,5 @@ TO USE hello:
 
 **********************************************************************************
 
-Some Issues:
 
-1. Shell has some issues because of which binaries or system call testing may give some issues.
-2. There are Memory leaks in the code.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-qemu-system-x86_64 -curses -cdrom $USER.iso -drive id=disk,file=$USER.img,if=none -device ahci,id=ahci -device ide-drive,drive=disk,bus=ahci.0 -gdb tcp::NNNN
 
