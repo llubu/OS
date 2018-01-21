@@ -1,11 +1,8 @@
-/*
-* Code for Task/Process Management
-*/
+# include <stdio.h>
 
 # include <sys/task_management.h>
 # include <sys/v_mem_manager.h>
 # include <sys/pmem_manager.h>
-# include <stdio.h>
 # include <sys/task_switch.h>
 # include <sys/tarfs.h>
 # include <sys/gdt.h>
@@ -16,64 +13,45 @@
 
 uint64_t pid_bitmap[32] = {0};
 extern void _set_k_ptable_cr3(uint64_t);
-PLIST *allPro;
-PLIST *waitQ;
-PLIST *runableQ;
+PLIST* allPro;
+PLIST* waitQ;
+PLIST* runableQ;
 
-#define  R0 0xFFFFFFFFFFFFFFFD // RW bit ,will be set to Readonly
-#define COW 0x0008000000000000 // COW BIt handled in software
+#define R0    (0xfffffffffffffffd) // rw bit ,will be set to readonly
+#define COW   (0x0008000000000000) // COW BIt handled in software
 
-/*
-* Returns a free pid (32 bit unsigned integer for the new process)
-*/
 uint32_t get_Newpid()
 {
 	uint32_t i = 1;
-	while (pid_bitmap[i++] != 0 && i < MAXPID);	// abhi convert that to bitmap with bit manipulation
+
+	while (pid_bitmap[i++] != 0 && i < MAXPID);
+
 	if (MAXPID < i && pid_bitmap[MAXPID] != 0)
-	{
-		return 0;				// 0 in this case shows error that is no free PID found abhi what to do in this case
-	}
+		return 0;
 	pid_bitmap[i-1] = 1;
 	return (i-1);
 }
 
-/*
-* This function creates the PCB for each new process created
-*
-*
-*/
-
-PCB *create_pcb()
+PCB* create_pcb()
 {
-	PCB *pro = NULL;
+	PCB* pro = NULL;
 
-	pro = (PCB *) k_malloc(sizeof(PCB));
-//	pro = (PCB *) 0xfffffffffff00000;
+	pro = (PCB*) k_malloc(sizeof(PCB));
 	if (pro == NULL)
-	{
-//		printf("\n Can't Allocate Memory for PCB");
 		return (PCB *) 0;
-	}
-	
 	return pro;
-}		
-		
-/*
-* This code creates the VMA for each segments of the elf binary
-* param: startaddress, size
-* Return: VMA* structure pointer
-*/
+}
 
-VMA *create_vma(uint64_t start_add, uint64_t size)
+VMA* create_vma(uint64_t start_add, uint64_t size)
 {
-	VMA *vm = NULL;
+	VMA* vm = NULL;
 
 	vm = k_malloc(sizeof(VMA));
-	if (vm == NULL)
+
+	if (!vm)
 	{
 		//exit();
-//		printf("\n Cant allocalte memory for VMA exit now");
+		printf("\n Cant allocalte memory for VMA exit now");
 	}
 	vm->start_add = start_add;
 	vm->end_add = (start_add + size);
@@ -82,46 +60,32 @@ VMA *create_vma(uint64_t start_add, uint64_t size)
 	return vm;
 }
 
-/*
-* Adds a given PCB to the given Process List in the end
-* 
-*/
-
-int add_toQ(PLIST *list, PCB* pc)
+int add_toQ(PLIST* list, PCB* pc)
 {
-	PLIST *node = NULL;
+	PLIST* node = NULL;
 
 	if((node = k_malloc(sizeof(PLIST))) == NULL)
 	{
-//		printf("\n Cant Allocate Memory for PLIST node");
+		//		printf("\n Cant Allocate Memory for PLIST node");
 		return 1;
 	}
 
 	node->pcb_li = pc;
 	node->next = NULL;
 	if (list->next == NULL)
-	{
 		list->next = node;
-	}
 	else
-	{
 		list->tail->next = node;
-	}	
 	list->tail = node;
 	list->count += 1;	//Increasing count of process in this list
 	return 0;
 }
 
-/*
-* Initializes the data structures for process management
-*/
-
 void init_task()
 {
-	/* Initializing allPro list */
 	if ((allPro = k_malloc(sizeof(PLIST))) == NULL)
 	{
-//		printf("\n Cant allocate mem for allpro");
+		//		printf("\n Cant allocate mem for allpro");
 		//exit();
 	}
 	else
@@ -147,7 +111,7 @@ void init_task()
 		waitQ->pcb_li = NULL;
 	}
 
-	/* Initializing runableQ */	
+	/* Initializing runableQ */
 	if ((runableQ = k_malloc(sizeof(PLIST))) == NULL)
 	{
 		printf("\n Cant allocate mem for runableQ");
@@ -163,229 +127,234 @@ void init_task()
 	}
 }
 
-
-/*
-* Function to get the pid of the current process
-* param: PCB* structure pointer
-* return: uint32_t ineger for process's PID
-*/
-
 uint32_t get_pid()
 {
-	return (running->pid);		
+	return (running->pid);
 }
 
-
-/*
-* Returns the next available process in runableQ from head
-* return: PCB * pointer
-*
-*/
-
-PCB * get_nextProcess(PLIST *list)
+PCB* get_nextProcess(PLIST* list)
 {
 	PCB *pt = NULL;
-	
-	if ((list->next == NULL))
-	{
-//		printf("\n Some Error NO Processes on runableQ to schedule returning IDLE process");
+
+	if (!list->next)
 		return NULL;		//return Idle process here
-	}	
 	pt = list->next->pcb_li;
 	list->next = list->next->next;	//returns from the head
 	list->count -= 1;		//decresing count
 
 	return pt;
 }
-/*
-* Copies User page table when a process does fork
-*/
 
-int copyUST( uint64_t *uST, PCB *pg)
+int copyUST( uint64_t* uST, PCB* pg)
 {
-	uint64_t *dst = (uint64_t *)0xFFFFFFFF7FFF0000;
+	uint64_t* dst = (uint64_t*)0xffffffff7fff0000ul;
 	uint64_t tmp = 0;
 	uint64_t i = 0;
 	dst = uST;
-	
+
 	while (i < (512 * 8))
 	{
 		tmp = 0;
 		tmp = *(uST - i);
-	
-		_set_k_ptable_cr3(pg->cr3);			// child processes page table
+
+		_set_k_ptable_cr3(pg->cr3); // child processes page table
 
 		*(dst - i) = tmp;
 		i++;
-		_set_k_ptable_cr3(running->cr3);		// Setting back to parents	
+		// Setting back to parents
+		_set_k_ptable_cr3(running->cr3);
 	}
-	pg->u_stack = (uint64_t *) 0xFFFFFFFF7FFF0000;
+	pg->u_stack = (uint64_t*)0xffffffff7fff0000ul;
 	return 0;
 }
 
 uint64_t selfRef(uint64_t pml4e, uint64_t pdpe, uint64_t pde, uint64_t pte)
 {
-	uint64_t base;
-	base = 0xFFFF000000000000; 
+	uint64_t base = 0xffff000000000000ul;
+
 	if (pml4e < 256)
-	{
-		base = 0x0000000000000000;
-	}	
-	base = (((base >> (12+9+9+9+9))<<9 | pml4e ) << (12+9+9+9) );
-        base = (((base >> (12+9+9+9))<<9   | pdpe  ) << (12+9+9) );
-	base = (((base >> (12+9+9))<<9     | pde   ) << (12+9) );
-	base = (((base >> (12+9))<<9       | pte   ) << (12) );
+		base = 0ul;
+
+	base = (((base >> (12 + 9 + 9 + 9 + 9)) << 9 | pml4e)
+		<< (12 + 9 + 9 + 9));
+	base = (((base >> (12 + 9 + 9 + 9)) << 9 | pdpe) << (12 + 9 + 9));
+	base = (((base >> (12 + 9 + 9)) << 9 | pde) << (12 + 9));
+	base = (((base >> (12 + 9)) << 9 | pte) << (12));
+
 	return base;
 }
 
-
-/****************************************************************/
-
 void copyPageTables(PCB *child, PCB *parent)
 {
-	uint64_t i = 0, j = 0, k = 0, l = 0; // iterators for pml4e, pdpe, pde, pte
-	volatile uint64_t *pml4eAdd, *pdpeAdd, *pdeAdd, *pteAdd;
-	volatile  uint64_t *new_pml4eAdd, *new_pdpeAdd, *new_pdeAdd, *new_pteAdd;
-  	uint64_t child_pml4e_entry;
+	uint64_t i = 0;
+	uint64_t j = 0;
+	uint64_t k = 0;
+	uint64_t l = 0;
+	volatile uint64_t *pml4eAdd;
+	volatile uint64_t *pdpeAdd;
+	volatile uint64_t *pdeAdd;
+	volatile uint64_t *pteAdd;
+	volatile uint64_t *new_pml4eAdd;
+	volatile uint64_t *new_pdpeAdd;
+	volatile uint64_t *new_pdeAdd;
+	volatile uint64_t *new_pteAdd;
+	uint64_t child_pml4e_entry;
 
 	child_pml4e_entry = child->index;
-	//printf("IN COPY PAGE TABLE");
-  	pml4eAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, 0x1FE));
-  	new_pml4eAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, child_pml4e_entry ));
+	pml4eadd = (uint64_t *)(selfref(0x1fe, 0x1fe, 0x1fe, 0x1fe));
+	new_pml4eadd = (uint64_t *)(selfref(0x1fe, 0x1fe, 0x1fe,
+		child_pml4e_entry ));
 
-  	for(i=0; i<510; i++)
-  	{
-    		if( i==child_pml4e_entry)
-      		continue;
+	for (i = 0; i < 510; i++)
+	{
+		if (i == child_pml4e_entry)
+			continue;
 
-    	if(pml4eAdd[i]!=0x0) // if some entry exists we have to copy
-    	{
-		new_pml4eAdd[i] = (((uint64_t) get_page()) | 7);
-      		pdpeAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, i));
-      		new_pdpeAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, child_pml4e_entry, i));
-      
-      		for( j=0; j<512; j++)
-      		{
-        		if(pdpeAdd[j])
-        		{
-	  			new_pdpeAdd[j] = (((uint64_t) get_page()) | 7);
-          			pdeAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, i, j));
-          			new_pdeAdd = (uint64_t *)(selfRef(0x1FE, child_pml4e_entry, i, j));
+		if (pml4eAdd[i]) // if some entry exists we have to copy
+		{
+			new_pml4eAdd[i] = (((uint64_t)get_page()) | 7);
+			pdpeAdd = (uint64_t *)(selfRef(0x1fe, 0x1fe, 0x1fe, i));
+			new_pdpeAdd = (uint64_t *)(selfRef(0x1fe, 0x1fe,
+				child_pml4e_entry, i));
 
-          			for( k=0; k<512; k++)
-          			{
-            				if(pdeAdd[k])
-            				{
-	            				new_pdeAdd[k] = (((uint64_t) get_page()) | 7);
-              					pteAdd = (uint64_t *)(selfRef(0x1FE, i, j, k));
-              					new_pteAdd = (uint64_t *)(selfRef(child_pml4e_entry, i, j, k));
+			for (j = 0; j < 512; j++)
+			{
+				if (pdpeAdd[j])
+				{
+					new_pdpeAdd[j] = (((uint64_t)
+						get_page()) | 7);
+					pdeAdd = (uint64_t*)(selfRef(0x1fe,
+						0x1fe, i, j));
+					new_pdeAdd = (uint64_t*)(selfRef(0x1fe,
+						child_pml4e_entry, i, j));
 
-              					for(l=0; l<512; l++)
-              					{
-                					if(pteAdd[l])
-                					{
-                  						new_pteAdd[l] = ((((uint64_t)pteAdd[l]) & R0) | COW);
-                  						pteAdd[l]     = ((((uint64_t)pteAdd[l]) & R0)| COW);
-                  			//			total_count++;
-                					}
-              					}
-            				}
-          			}
-	
-        		}
-      		}
-    	}
-  }
-  pml4eAdd[child_pml4e_entry] = 0x0;
+					for (k = 0; k < 512; k++)
+					{
+						if(pdeAdd[k])
+						{
+							new_pdeAdd[k] =
+								(((uint64_t)
+								  get_page())
+								 | 7);
+							pteAdd = (uint64_t*)
+								(selfRef(0x1fe,
+									 i, j, k));
+							new_pteAdd = (uint64_t*)
+								(selfRef(
+								 child_pml4e_entry,
+								 i, j, k));
+
+							for (l = 0; l < 512;
+									l++)
+							{
+								if(pteAdd[l])
+								{
+									new_pteAdd[l] = ((((uint64_t)pteAdd[l]) & R0) | COW);
+									pteAdd[l]     = ((((uint64_t)pteAdd[l]) & R0)| COW);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	pml4eAdd[child_pml4e_entry] = 0x0;
 }
 
 void deletePageTables()
 {
-  uint64_t i; // iterators for pml4e, pdpe, pde, pte
-  uint64_t *pml4eAdd;
-  pml4eAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, 0x1FE));
-  // Iterate through all the page table entries in the PML4E of the Parent process 
-  for(i=0; i<510; i++)
-	pml4eAdd[i] = ((uint64_t)0x0000000000000000) ;
+	uint64_t i; // iterators for pml4e, pdpe, pde, pte
+	uint64_t *pml4eAdd;
+	pml4eAdd = (uint64_t *)(selfref(0x1fe, 0x1fe, 0x1fe, 0x1fe));
+
+	for(i=0; i<510; i++)
+		pml4eAdd[i] = 0ul;
 }
-/*******************************************************************************************/
 
 void copyOnWritePageTables()
 {
-  volatile uint64_t i=0, j=0, k=0, l=0, m=0, newindex = 0; 
-  volatile uint64_t *pml4eAdd, *pdpeAdd, *pdeAdd, *pteAdd, *copycon;
-  volatile uint64_t *new_Add=NULL;
-  char content;		//content to be copied
+	volatile uint64_t i = 0;
+	volatile uint64_t j = 0;
+	volatile uint64_t k = 0;
+	volatile uint64_t l = 0;
+	volatile uint64_t m = 0;
+	volatile uint64_t newindex = 0;
+	volatile uint64_t* pml4eAdd;
+	volatile uint64_t* pdpeAdd;
+	volatile uint64_t* pdeAdd;
+	volatile uint64_t* pteAdd;
+	volatile uint64_t* copycon;
+	volatile uint64_t* new_Add = NULL;
+	char content;
+	uint64_t a1 = 1;
 
 	printf("IN COW func");
-  	pml4eAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, 0x1FE));
-  	for(i=0; i<509; i++)
-  	{
-    		if(pml4eAdd[i] == 0x0) // if some entry exists we have to copy
-    		{
-      			break;
-    		}
-  	}
-  	uint64_t a1=1;
-  	a1 = i;
+	pml4eadd = (uint64_t *)(selfref(0x1fe, 0x1fe, 0x1fe, 0x1fe));
 
- 	pml4eAdd[a1] = ((uint64_t)get_page() | 7);
-  	new_Add = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, a1));
-  
-  	for(i=0; i<510; i++)
-  	{
-    		if(i==a1)
+	for (i = 0; i < 509; i++)
+	{
+		if (!pml4eAdd[i])
+			break;
+	}
+	a1 = i;
+
+	pml4eAdd[a1] = ((uint64_t)get_page() | 7);
+	new_add = (uint64_t *)(selfref(0x1fe, 0x1fe, 0x1fe, a1));
+
+	for (i = 0; i < 510; i++)
+	{
+		if (i == a1)
+			continue;
+
+		if (pml4eAdd[i])
 		{
-      			continue;
-		}
-    		if(pml4eAdd[i] != 0x0) 
-    		{
-      			pdpeAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, 0x1FE, i));
-      			for( j=0; j<512; j++)
-      			{
-        			if(pdpeAdd[j] != 0x0)
-        			{ 
-          				pdeAdd = (uint64_t *)(selfRef(0x1FE, 0x1FE, i, j));
-          				for( k=0; k<512; k++)
-          				{
-            					if(pdeAdd[k] != 0x0)
-            					{
-              						pteAdd = (uint64_t *)(selfRef(0x1FE, i, j, k));
-              						for(l=0; l<512; l++)
-              						{
-                						if(pteAdd[l])
-                						{
-		  							uint64_t picAdd = (uint64_t )(selfRef(i,j,k,l));
-		  							new_Add[newindex] = ((uint64_t)get_page() | 7);
-		  
-		  							copycon = (uint64_t *)(selfRef(0x1FE, 0x1FE,a1,newindex));
-		  							char *src = (char *) picAdd;
-		  							char *dst = (char *) copycon;
-                  							for(m=0;m<4096;m++)
-                  							{
-		      								content = src[m];
-		      								dst[m] = content;		
-                  							}
-                  							pteAdd[l] = ((((uint64_t)new_Add[newindex] >>12)<<12) | 7);
-		  							newindex++;
-               	 						}
-              						}
-            					}
-          				}
+			pdpeAdd =
+				(uint64_t*)(selfref(0x1fe, 0x1fe, 0x1fe, i));
 
-        			}
-      			}
-    		}
-  	}
-  pml4eAdd[a1] = ((uint64_t)0x0);
+			for(j = 0; j < 512; j++)
+			{
+				if (pdpeAdd[j])
+				{
+					pdeadd = (uint64_t*)(selfref(0x1fe,
+								0x1fe, i, j));
+					for(k = 0; k < 512; k++)
+					{
+						if (pdeAdd[k])
+						{
+							pteAdd =(uint64_t*)
+								(selfref(0x1fe,
+									 i, j, k));
+							for( l= 0; l < 512;
+									l++)
+							{
+								if (pteAdd[l])
+								{
+									uint64_t picAdd = (uint64_t )(selfRef(i,j,k,l));
+									new_Add[newindex] = ((uint64_t)get_page() | 7);
+
+									copycon = (uint64_t *)(selfRef(0x1fe, 0x1fe,a1,newindex));
+									char *src = (char *) picAdd;
+									char *dst = (char *) copycon;
+									for(m=0;m<4096;m++)
+									{
+										content = src[m];
+										dst[m] = content;
+									}
+									pteAdd[l] = ((((uint64_t)new_Add[newindex] >>12)<<12) | 7);
+									newindex++;
+								}
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
+	pml4eAdd[a1] = ((uint64_t)0x0);
 }
 
-
-/*******************************************************************************************/
-
-/****************************************************************************************************************************/
-
-/* Copy Kernel Stack function */
 void cpKS(uint64_t *src, uint64_t *dst)
 {
 	uint64_t i = 0;
@@ -394,55 +363,45 @@ void cpKS(uint64_t *src, uint64_t *dst)
 	{
 		dst[i] = src[i];
 		++i;
-	}	
-}	
+	}
+}
 
-/***************************************************************************************/
-
-
-
-
-/*****************************************************************************************************************************/
-/*
-* test function to check the pte entries content in pte table
-*/
 void ckop()
 {
 	uint64_t i = 0, j = 0, k = 0, l =0;
 	uint64_t *p4 = NULL, *p3 = NULL, *p2 = NULL, *p1 = NULL;
 
-	p4 = (uint64_t *) selfRef(0x1FE, 0x1FE, 0x1FE, 0x1FE);
-	
+	p4 = (uint64_t *) selfRef(0x1fe, 0x1fe, 0x1fe, 0x1fe);
+
 	for (i = 0; i < 510; i ++)
 	{
 		if (p4[i])
 		{
-			p3 = (uint64_t *) selfRef(0x1FE, 0x1FE, 0x1FE, i);
+			p3 = (uint64_t *) selfRef(0x1fe, 0x1fe, 0x1fe, i);
 			for (j = 0; j < 512; j++)
 			{
 				if (p3[j])
 				{
-					p2 = (uint64_t *) selfRef(0x1FE, 0x1FE, i, j);
+					p2 = (uint64_t *) selfRef(0x1fe, 0x1fe, i, j);
 					for (k = 0;k < 512; k++)
 					{
 						if (p2[k])
 						{
-							p1 = (uint64_t *) selfRef(0x1FE, i, j, k);
+							p1 = (uint64_t *) selfRef(0x1fe, i, j, k);
 							for (l = 0; l< 512; l++)
 							{
 								if (p1[l])
 								{
 									printf("\n PTE:%d:%d:%d:%d:%x", i,j,k,l,p1[l]);
 								}
-							}		
-						}	
-					}	
-				}	
-			}	
-		}	
-	}	
-}	
-/*****************************************************************************************************************************/
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
 uint64_t doFork()
 {
@@ -455,27 +414,27 @@ uint64_t doFork()
 	cpKS((running->kernel_stack), (pro->kernel_stack));
 
 	pro->cr3 = map_pageTable(pro);	// Storing Base Physical address of PML4e for new process
-	
-	pro->ppid = parent_process->pid;	
+
+	pro->ppid = parent_process->pid;
 	if ((pro->pid = get_Newpid()) == 0)
 	{
-//		printf("\n Error No Free PID found");	// abhi abort ?
-//		return -1;
+		//		printf("\n Error No Free PID found");	// abhi abort ?
+		//		return -1;
 	}
 	pid = pro->pid;	
 	//copy the page tables of parent process !!
 	copyPageTables(pro, parent_process);
-  	_set_k_ptable_cr3(pro->cr3);		//flush TLB
-//	copyOnWritePageTables();
-//	printf("\n abhi");
-//	ckop();
-//   _set_k_ptable_cr3(pro->cr3);
-//	printf("\nabhi");
-//	ckop();
-//  _set_k_ptable_cr3(running->cr3);
+	_set_k_ptable_cr3(pro->cr3);		//flush TLB
+	//	copyOnWritePageTables();
+	//	printf("\n abhi");
+	//	ckop();
+	//   _set_k_ptable_cr3(pro->cr3);
+	//	printf("\nabhi");
+	//	ckop();
+	//  _set_k_ptable_cr3(running->cr3);
 	add_toQ(allPro, pro);		// Add process to All Process list
 	add_toQ(runableQ, pro);
-	/* Hack for changing kernel stack values, should work */	
+	/* Hack for changing kernel stack values, should work */
 	if (pro->kernel_stack[255] == 0x0)
 	{
 		if (pro->kernel_stack[254] != 0x0 && pro->kernel_stack[254] == 0x23)	//somethig extra was pushed on kernel stack last time adjust index
@@ -487,7 +446,7 @@ uint64_t doFork()
 	{
 		k_cid = 236;
 	}
-	 
+
 	if (running->kernel_stack[255] == 0x0)
 	{
 		if (running->kernel_stack[254] != 0x0 && running->kernel_stack[254] == 0x23)	//somethig extra was pushed on kernel stack last time adjust index

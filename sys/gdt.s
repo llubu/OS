@@ -28,3 +28,4 @@ _x86_64_asm_lgdt:
 	movq %rdx, %ds
 	movq %rdx, %ss
 	retq
+

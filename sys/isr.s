@@ -4,7 +4,7 @@
 .global _isr_080
 
 _isr_000:
-  jmp isr_common_stub 
+  jmp isr_common_stub
   iretq
 
 isr_common_stub:
@@ -23,9 +23,9 @@ isr_common_stub:
   pushq %r13
   pushq %r14
   pushq %r15
-  
+
   call isr_handler_0
-  
+
   popq %r15
   popq %r14
   popq %r13
@@ -40,14 +40,14 @@ isr_common_stub:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax   
-  
-  iretq           
+  popq %rax
+
+  iretq
 
 
 _isr_014:
 
-  jmp isr_common_stub_14  
+  jmp isr_common_stub_14
 
   iretq
 
@@ -67,9 +67,9 @@ isr_common_stub_14:
   pushq %r13
   pushq %r14
   pushq %r15
-  
+
   call isr_handler_14
-  
+
   popq %r15
   popq %r14
   popq %r13
@@ -84,13 +84,13 @@ isr_common_stub_14:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax    
+  popq %rax
   add $8, %rsp	# handling additional error code pushed on stack
-  
-  iretq           
+
+  iretq
 
 _isr_013:
-  jmp isr_common_stub_13  
+  jmp isr_common_stub_13
   iretq
 
 isr_common_stub_13:
@@ -126,12 +126,12 @@ isr_common_stub_13:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax   
-  
-  iretq           
+  popq %rax
+
+  iretq
 
 _isr_080:
-  jmp isr_common_stub_80  
+  jmp isr_common_stub_80
   iretq
 
 isr_common_stub_80:
@@ -150,7 +150,7 @@ isr_common_stub_80:
   pushq %r13
   pushq %r14
   pushq %r15
-  
+
   movq %rsp, %rdi
   call isr_handler_80
   popq %r15
@@ -167,8 +167,7 @@ isr_common_stub_80:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax       
-  
-  iretq           
+  popq %rax
 
+  iretq
 

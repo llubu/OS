@@ -2,7 +2,7 @@
 .global _irq_033
 
 _irq_032:
-  jmp isr_common_stub  
+  jmp isr_common_stub
   iretq
 
 isr_common_stub:
@@ -37,12 +37,12 @@ isr_common_stub:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax      
-  
-  iretq           
+  popq %rax
+
+  iretq
 
 _irq_033:
-  jmp isr_common_stub2   
+  jmp isr_common_stub2
   iretq
 
 isr_common_stub2:
@@ -76,7 +76,7 @@ isr_common_stub2:
   popq %rdx
   popq %rcx
   popq %rbx
-  popq %rax 
-  
-  iretq           
+  popq %rax
+
+  iretq
 

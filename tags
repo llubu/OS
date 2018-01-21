@@ -1,0 +1,570 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+-exclude	Makefile	/^	tar -czvf $(USER).tgz --exclude=.empty --exclude=.*.sw? --exclude=*~ LICENSE README Makefile linker.script sys bin crt libc ld include $(ROOTFS) $(USER).img$/;"	m
+AR	Makefile	/^AR=ar$/;"	m
+AS	Makefile	/^AS=as$/;"	m
+BASE	include/sys/v_mem_manager.h	7;"	d
+BINS	Makefile	/^BINS:=$(addprefix $(ROOTFS)\/,$(wildcard bin\/*))$/;"	m
+BIN_SRCS	Makefile	/^BIN_SRCS:=$(wildcard bin\/*\/*.c)$/;"	m
+BLOCKSIZE	include/sys/tarfs.h	3;"	d
+BLOCKSIZE	sys/dir.c	19;"	d	file:
+BUFLEN	sys/printf.c	12;"	d	file:
+C	include/sys/gdt.h	18;"	d
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-O1 -std=c99 -Wall -Werror -nostdinc -Iinclude -msoft-float -mno-sse -mno-red-zone -fno-builtin -fPIC -march=amdfam10 -g3$/;"	m
+COW	sys/isr.c	15;"	d	file:
+COW	sys/task_management.c	24;"	d	file:
+D	include/sys/gdt.h	25;"	d
+DIR	include/sys/dirent.h	/^  typedef struct DIR {$/;"	s
+DIR	include/sys/dirent.h	/^  } DIR;$/;"	t	typeref:struct:DIR
+DIRENT_H	include/sys/dirent.h	2;"	d
+DPL0	include/sys/gdt.h	19;"	d
+DPL1	include/sys/gdt.h	20;"	d
+DPL2	include/sys/gdt.h	21;"	d
+DPL3	include/sys/gdt.h	22;"	d
+E2BIG	include/sys/errno.h	10;"	d
+EACCES	include/sys/errno.h	11;"	d
+EAGAIN	include/sys/errno.h	12;"	d
+EBADF	include/sys/errno.h	13;"	d
+EBUSY	include/sys/errno.h	14;"	d
+ECHILD	include/sys/errno.h	15;"	d
+EDEADLK	include/sys/errno.h	16;"	d
+EDOM	include/sys/errno.h	5;"	d
+EEXIST	include/sys/errno.h	17;"	d
+EFAULT	include/sys/errno.h	18;"	d
+EFBIG	include/sys/errno.h	19;"	d
+EINTR	include/sys/errno.h	20;"	d
+EINVAL	include/sys/errno.h	21;"	d
+EIO	include/sys/errno.h	22;"	d
+EISDIR	include/sys/errno.h	23;"	d
+EMFILE	include/sys/errno.h	24;"	d
+EMLINK	include/sys/errno.h	25;"	d
+ENAMETOOLONG	include/sys/errno.h	26;"	d
+ENFILE	include/sys/errno.h	27;"	d
+ENODEV	include/sys/errno.h	28;"	d
+ENOENT	include/sys/errno.h	29;"	d
+ENOEXEC	include/sys/errno.h	30;"	d
+ENOLCK	include/sys/errno.h	31;"	d
+ENOMEM	include/sys/errno.h	32;"	d
+ENOSPC	include/sys/errno.h	33;"	d
+ENOSYS	include/sys/errno.h	34;"	d
+ENOTDIR	include/sys/errno.h	35;"	d
+ENOTEMPTY	include/sys/errno.h	36;"	d
+ENOTTY	include/sys/errno.h	37;"	d
+ENXIO	include/sys/errno.h	38;"	d
+EPERM	include/sys/errno.h	39;"	d
+EPIPE	include/sys/errno.h	40;"	d
+ERANGE	include/sys/errno.h	6;"	d
+EROFS	include/sys/errno.h	41;"	d
+ERRNO_H	include/sys/errno.h	2;"	d
+ESPIPE	include/sys/errno.h	42;"	d
+ESRCH	include/sys/errno.h	43;"	d
+EXDEV	include/sys/errno.h	44;"	d
+FDT	include/sys/tarfs.h	/^typedef struct file_descriptor FDT;$/;"	t	typeref:struct:file_descriptor
+File	include/sys/dirent.h	/^struct File {$/;"	s
+GDT_CS	include/sys/gdt.h	15;"	d
+GDT_DS	include/sys/gdt.h	16;"	d
+GREG	include/sys/task_switch.h	/^typedef struct globRegs GREG;$/;"	t	typeref:struct:globRegs
+IDT_DPL0	include/sys/idt.h	12;"	d
+IDT_DPL1	include/sys/idt.h	13;"	d
+IDT_DPL2	include/sys/idt.h	14;"	d
+IDT_DPL3	include/sys/idt.h	15;"	d
+IDT_IST	include/sys/idt.h	8;"	d
+IDT_P	include/sys/idt.h	16;"	d
+IDT_RESERVED	include/sys/idt.h	9;"	d
+IDT_TYPE	include/sys/idt.h	10;"	d
+IDT_ZERO	include/sys/idt.h	11;"	d
+INITIAL_STACK_SIZE	sys/main.c	14;"	d	file:
+KERN_SRCS	Makefile	/^KERN_SRCS:=$(wildcard sys\/*.c sys\/*.s sys\/*\/*.c sys\/*\/*.s)$/;"	m
+L	include/sys/gdt.h	24;"	d
+LD	Makefile	/^LD=ld$/;"	m
+LDLAGS	Makefile	/^LDLAGS=-nostdlib$/;"	m
+LD_SRCS	Makefile	/^LD_SRCS:=$(wildcard ld\/*.c)$/;"	m
+LIBC_SRCS	Makefile	/^LIBC_SRCS:=$(wildcard libc\/*.c libc\/*\/*.c)$/;"	m
+MAXPID	include/sys/task_management.h	5;"	d
+MAX_GDT	sys/gdt.c	5;"	d	file:
+MAX_IDT	sys/idt.c	4;"	d	file:
+MAX_KERN	include/sys/v_mem_manager.h	6;"	d
+NAMEMAX	include/sys/dirent.h	6;"	d
+NULL	include/defs.h	4;"	d
+P	include/sys/gdt.h	23;"	d
+PAGE_SIZE	include/sys/v_mem_manager.h	10;"	d
+PAGE_SIZE	sys/pmem_manager.c	6;"	d	file:
+PCB	include/sys/task_management.h	/^typedef struct pcb_t PCB;$/;"	t	typeref:struct:pcb_t
+PIC1	include/sys/irq.h	4;"	d
+PIC2	include/sys/irq.h	5;"	d
+PIC_EOI	include/sys/irq.h	3;"	d
+PIC_sendEOI	sys/irq.c	/^void PIC_sendEOI(unsigned char irq)$/;"	f
+PLIST	include/sys/task_management.h	/^typedef struct pro_pt PLIST;$/;"	t	typeref:struct:pro_pt
+PTAB	include/sys/v_mem_manager.h	/^typedef struct ptab PTAB;$/;"	t	typeref:struct:ptab
+Page	include/sys/pmem_manager.h	/^}Page;$/;"	t	typeref:struct:page
+R0	sys/task_management.c	23;"	d	file:
+ROOTBIN	Makefile	/^ROOTBIN=$(ROOTFS)\/bin$/;"	m
+ROOTBOOT	Makefile	/^ROOTBOOT=$(ROOTFS)\/boot$/;"	m
+ROOTFS	Makefile	/^ROOTFS=rootfs$/;"	m
+ROOTLIB	Makefile	/^ROOTLIB=$(ROOTFS)\/lib$/;"	m
+STRING_H	include/sys/string.h	2;"	d
+SUBMITTO	Makefile	/^SUBMITTO:=~mferdman\/cse506-submit\/$/;"	m
+SYSCALL_CLOSE	include/syscall.h	22;"	d
+SYSCALL_CLOSEDIR	include/syscall.h	19;"	d
+SYSCALL_EXECVE	include/syscall.h	13;"	d
+SYSCALL_EXIT	include/syscall.h	14;"	d
+SYSCALL_FORK	include/syscall.h	9;"	d
+SYSCALL_GETPID	include/syscall.h	24;"	d
+SYSCALL_MALLOC	include/syscall.h	10;"	d
+SYSCALL_OPEN	include/syscall.h	21;"	d
+SYSCALL_OPENDIR	include/syscall.h	18;"	d
+SYSCALL_PROTO	include/syscall.h	6;"	d
+SYSCALL_PS	include/syscall.h	23;"	d
+SYSCALL_PUTINT	include/syscall.h	7;"	d
+SYSCALL_PUTS	include/syscall.h	8;"	d
+SYSCALL_READ	include/syscall.h	11;"	d
+SYSCALL_READDIR	include/syscall.h	17;"	d
+SYSCALL_SCHD	include/syscall.h	12;"	d
+SYSCALL_STDERR	include/syscall.h	20;"	d
+SYSCALL_WAIT	include/syscall.h	16;"	d
+SYSCALL_WAITPID	include/syscall.h	15;"	d
+UBASE	include/sys/v_mem_manager.h	8;"	d
+UTOP	include/sys/v_mem_manager.h	9;"	d
+VMA	include/sys/task_management.h	/^typedef struct vma_t VMA;$/;"	t	typeref:struct:vma_t
+W	include/sys/gdt.h	26;"	d
+_A_ARCH	include/sys/dirent.h	22;"	d
+_A_HIDDEN	include/sys/dirent.h	19;"	d
+_A_NORMAL	include/sys/dirent.h	17;"	d
+_A_RDONLY	include/sys/dirent.h	18;"	d
+_A_SUBDIR	include/sys/dirent.h	21;"	d
+_A_SYSTEM	include/sys/dirent.h	20;"	d
+_COMMON_H	include/common.h	3;"	d
+_DEFS_H	include/defs.h	2;"	d
+_DO_EXECVE	include/sys/execve.h	2;"	d
+_GDT_H	include/sys/gdt.h	2;"	d
+_IDT_H	include/sys/idt.h	2;"	d
+_ISR_H	include/sys/isr.h	2;"	d
+_KERN_PAGE_TABLE	include/sys/kern_page_table.h	2;"	d
+_MALLOC_H	include/libc/malloc.h	2;"	d
+_PMEM_MANAGER	include/sys/pmem_manager.h	2;"	d
+_PROCESS_QUE_	include/sys/process_que.h	2;"	d
+_SHELL_H	include/shell.h	2;"	d
+_STDARG_H	include/stdarg.h	2;"	d
+_STDIO_H	include/stdio.h	2;"	d
+_STDLIB_H	include/stdlib.h	2;"	d
+_SYSCALL_H	include/sys/syscall.h	2;"	d
+_SYSCALL_H	include/syscall.h	2;"	d
+_TARFS_H	include/sys/tarfs.h	2;"	d
+_TASK_MANAGEMENT_H	include/sys/task_management.h	2;"	d
+_TASK_SWITCH	include/sys/task_switch.h	2;"	d
+_UTIL_H	include/sys/util.h	2;"	d
+_V_MEM_MANAGER	include/sys/v_mem_manager.h	2;"	d
+__int32_t	include/defs.h	/^typedef int __int32_t;$/;"	t
+__uint16_t	include/defs.h	/^typedef unsigned short __uint16_t;$/;"	t
+__uint32_t	include/defs.h	/^typedef unsigned int __uint32_t;$/;"	t
+__uint64_t	include/defs.h	/^typedef unsigned long __uint64_t;$/;"	t
+_getdirname	sys/dir.c	/^ const char * _getdirname (const struct dirent *dp)$/;"	f
+_irq_032	sys/irq.s	/^_irq_032:$/;"	l
+_irq_033	sys/irq.s	/^_irq_033:$/;"	l
+_isr_000	sys/isr.s	/^_isr_000:$/;"	l
+_isr_013	sys/isr.s	/^_isr_013:$/;"	l
+_isr_014	sys/isr.s	/^_isr_014:$/;"	l
+_isr_080	sys/isr.s	/^_isr_080:$/;"	l
+_set_k_ptable_cr3	sys/kpt.s	/^_set_k_ptable_cr3:$/;"	l
+_set_paging	sys/kpt.s	/^_set_paging:$/;"	l
+_start	crt/crt1.c	/^void _start(void) {$/;"	f
+_x86_64_asm_lgdt	sys/gdt.s	/^_x86_64_asm_lgdt:$/;"	l
+_x86_64_asm_lidt	sys/idt.s	/^_x86_64_asm_lidt:$/;"	l
+a1	include/syscall.h	/^SYSCALL_PROTO(2)(uint64_t n, uint64_t a1, uint64_t a2) $/;"	v
+a1	include/syscall.h	/^SYSCALL_PROTO(3)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3) $/;"	v
+a1	include/syscall.h	/^SYSCALL_PROTO(4)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) {$/;"	v
+a2	include/syscall.h	/^SYSCALL_PROTO(3)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3) $/;"	v
+a2	include/syscall.h	/^SYSCALL_PROTO(4)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) {$/;"	v
+a3	include/syscall.h	/^SYSCALL_PROTO(4)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) {$/;"	v
+add_toQ	sys/task_management.c	/^int add_toQ(PLIST *list, PCB* pc)$/;"	f
+addr	sys/gdt.c	/^	uint64_t addr;$/;"	m	struct:gdtr_t	file:
+addr	sys/idt.c	/^	uint64_t addr;$/;"	m	struct:idtr_t	file:
+allPro	sys/task_management.c	/^PLIST *allPro;$/;"	v
+base	include/sys/pmem_manager.h	/^	uint64_t base, length;$/;"	m	struct:smap_t
+boot	sys/main.c	/^void boot(void)$/;"	f
+buf	libc/u_scanf.c	/^char buf[128];$/;"	v
+buf	sys/printf.c	/^char buf[BUFLEN]; 			\/\/ buffer to hold print arguments$/;"	v
+checksum	include/sys/tarfs.h	/^	char checksum[8];$/;"	m	struct:posix_header_ustar
+ck	sys/pmem_manager.c	/^Page* ck= NULL;       \/\/ To check the first free page allocated$/;"	v
+ckop	sys/task_management.c	/^void ckop()$/;"	f
+clear_buf	sys/util.c	/^void clear_buf(uint64_t *pt, uint64_t size)$/;"	f
+clear_screen	sys/printf.c	/^void clear_screen()$/;"	f
+close	libc/dir.c	/^uint64_t close(uint64_t str)$/;"	f
+close_file	sys/tarfs.c	/^uint64_t close_file(uint64_t fd)$/;"	f
+closedir	sys/dir.c	/^ int closedir (DIR *dirp)$/;"	f
+cmos_address	sys/irq.c	/^	cmos_address = 0x70,$/;"	e	enum:__anon1	file:
+cmos_data	sys/irq.c	/^	cmos_data    = 0x71$/;"	e	enum:__anon1	file:
+color	sys/printf.c	/^int color = 0x07;$/;"	v
+construct_address	sys/kern_page_table.c	/^uint64_t construct_address(uint64_t add1, int b1, int b2, int b3)$/;"	f
+copyOnWritePageTables	sys/task_management.c	/^void copyOnWritePageTables()$/;"	f
+copyPageTables	sys/task_management.c	/^void copyPageTables(PCB *child, PCB *parent)$/;"	f
+copyUST	sys/task_management.c	/^int copyUST( uint64_t *uST, PCB *pg)$/;"	f
+count	include/sys/task_management.h	/^	uint32_t count;$/;"	m	struct:pro_pt
+cpKS	sys/task_management.c	/^void cpKS(uint64_t *src, uint64_t *dst)$/;"	f
+cr3	include/sys/task_management.h	/^	uint64_t cr3;	\/\/ Coontents of CR3 Register. (add of PML4E page table)$/;"	m	struct:pcb_t
+create_pcb	sys/task_management.c	/^PCB *create_pcb()$/;"	f
+create_vma	sys/task_management.c	/^VMA *create_vma(uint64_t start_add, uint64_t size)$/;"	f
+cs	include/sys/task_switch.h	/^	uint64_t cs;$/;"	m	struct:globRegs
+cur_PK	sys/v_mem_manager.c	/^uint64_t cur_PK;$/;"	v
+cur_VK	sys/v_mem_manager.c	/^uint64_t cur_VK;$/;"	v
+current	include/sys/dirent.h	/^    dirent        current;                     \/* current entry *\/$/;"	m	struct:DIR
+d2hex	sys/printf.c	/^void d2hex(char *buf, uint64_t num)$/;"	f
+d_name	include/sys/dirent.h	/^    char d_name[NAMEMAX];$/;"	m	struct:dirent
+day	sys/irq.c	/^unsigned char day;$/;"	v
+deletePageTables	sys/task_management.c	/^void deletePageTables()$/;"	f
+devmajor	include/sys/tarfs.h	/^	char devmajor[8];$/;"	m	struct:posix_header_ustar
+devminor	include/sys/tarfs.h	/^	char devminor[8];$/;"	m	struct:posix_header_ustar
+dirent	include/sys/dirent.h	/^  typedef struct dirent {$/;"	s
+dirent	include/sys/dirent.h	/^  } dirent;$/;"	t	typeref:struct:dirent
+dirent_filled	include/sys/dirent.h	/^    int           dirent_filled;               \/* is current un-processed? *\/$/;"	m	struct:DIR
+dirname	include/sys/dirent.h	/^    char          dirname[NAMEMAX];                    \/* directory being scanned *\/$/;"	m	struct:DIR
+displayentry	sys/dir.c	/^void displayentry(struct posix_header_ustar* entry){$/;"	f
+doFork	sys/task_management.c	/^uint64_t doFork()$/;"	f
+do_Ps	sys/process_que.c	/^void do_Ps()$/;"	f
+do_execve	sys/execve.c	/^void do_execve(char *fn)$/;"	f
+do_exit	sys/process_que.c	/^void do_exit(int status)$/;"	f
+do_wait	sys/process_que.c	/^int do_wait()$/;"	f
+do_waitpid	sys/process_que.c	/^int do_waitpid(uint64_t pid)$/;"	f
+e_ehsize	include/sys/tarfs.h	/^  char e_ehsize[2]; \/* ELF header size *\/$/;"	m	struct:elf_header
+e_entry	include/sys/tarfs.h	/^  uint64_t e_entry; \/* Entry point address *\/$/;"	m	struct:elf_header
+e_flags	include/sys/tarfs.h	/^  char e_flags[4]; \/* Processor-specific flags *\/$/;"	m	struct:elf_header
+e_ident	include/sys/tarfs.h	/^  unsigned char e_ident[16]; \/* ELF identification *\/$/;"	m	struct:elf_header
+e_machine	include/sys/tarfs.h	/^  char e_machine[2]; \/* Machine type *\/$/;"	m	struct:elf_header
+e_phentsize	include/sys/tarfs.h	/^  char e_phentsize[2]; \/* Size of program header entry *\/$/;"	m	struct:elf_header
+e_phnum	include/sys/tarfs.h	/^  char e_phnum[2]; \/* Number of program header entries *\/$/;"	m	struct:elf_header
+e_phoff	include/sys/tarfs.h	/^  char e_phoff[8]; \/* Program header offset *\/$/;"	m	struct:elf_header
+e_shentsize	include/sys/tarfs.h	/^  char e_shentsize[2]; \/* Size of section header entry *\/$/;"	m	struct:elf_header
+e_shnum	include/sys/tarfs.h	/^  char e_shnum[2]; \/* Number of section header entries *\/$/;"	m	struct:elf_header
+e_shoff	include/sys/tarfs.h	/^  char e_shoff[8]; \/* Section header offset *\/$/;"	m	struct:elf_header
+e_shstrndx	include/sys/tarfs.h	/^  char e_shstrndx[2]; \/* Section name string table index *\/$/;"	m	struct:elf_header
+e_type	include/sys/tarfs.h	/^  char e_type[2]; \/* Object file type *\/$/;"	m	struct:elf_header
+e_version	include/sys/tarfs.h	/^  char e_version[4]; \/* Object file version *\/$/;"	m	struct:elf_header
+eflags	include/sys/task_switch.h	/^	uint64_t eflags;$/;"	m	struct:globRegs
+eip	include/sys/task_switch.h	/^	uint64_t eip;$/;"	m	struct:globRegs
+elf_header	include/sys/tarfs.h	/^struct elf_header$/;"	s
+end_add	include/sys/task_management.h	/^	uint64_t end_add;     \/\/ End address (First Address after end of VMA)	$/;"	m	struct:vma_t
+err_code	include/sys/isr.h	/^     unsigned char err_code;    \/\/ Interrupt number and error code (if applicable)$/;"	m	struct:registers
+errno	sys/dir.c	/^int errno;$/;"	v
+esp	include/sys/task_switch.h	/^	uint64_t esp;$/;"	m	struct:globRegs
+execve	libc/execve.c	/^void execve(char *filename)$/;"	f
+exit	libc/lib.c	/^void exit(int status)$/;"	f
+fd_table	sys/tarfs.c	/^FDT fd_table[150];$/;"	v
+fd_used	sys/tarfs.c	/^int fd_used = 2;$/;"	v
+file_descriptor	include/sys/tarfs.h	/^struct file_descriptor{$/;"	s
+findNext	sys/dir.c	/^int findNext(struct dirent* current)$/;"	f
+findfirst	sys/dir.c	/^int findfirst(char* dirname, char spec , struct dirent* data )$/;"	f
+flags	sys/idt.c	/^	uint16_t flags;$/;"	m	struct:idt_entry	file:
+fork	libc/malloc.c	/^uint64_t fork()$/;"	f
+fp	include/sys/tarfs.h	/^  struct File* fp;$/;"	m	struct:file_descriptor	typeref:struct:file_descriptor::File
+free	sys/v_mem_manager.c	/^void free(uint64_t add)$/;"	f
+free_page	sys/pmem_manager.c	/^void free_page(void* pt)$/;"	f
+free_page_list	sys/pmem_manager.c	/^void free_page_list(struct smap_t* sp, void* physbase, void* physfree)$/;"	f
+gdt	sys/gdt.c	/^uint64_t gdt[MAX_GDT] = {$/;"	v
+gdtr	sys/gdt.c	/^static struct gdtr_t gdtr = {$/;"	v	typeref:struct:gdtr_t	file:
+gdtr_t	sys/gdt.c	/^struct gdtr_t {$/;"	s	file:
+getFile	sys/tarfs.c	/^struct File* getFile(const char *fileName)$/;"	f
+getPDEindex	sys/v_mem_manager.c	/^int getPDEindex(uint64_t vadd)$/;"	f
+getPDPEindex	sys/v_mem_manager.c	/^int getPDPEindex(uint64_t vadd)$/;"	f
+getPML4Eindex	sys/v_mem_manager.c	/^int getPML4Eindex(uint64_t vadd)$/;"	f
+getPTEindex	sys/v_mem_manager.c	/^int getPTEindex(uint64_t vadd)$/;"	f
+get_Newpid	sys/task_management.c	/^uint32_t get_Newpid()$/;"	f
+get_RTC_register	sys/irq.c	/^unsigned char get_RTC_register(int reg) {$/;"	f
+get_entry	sys/idt.c	/^struct idt_entry get_entry(uint64_t target)$/;"	f
+get_hex	libc/u_scanf.c	/^int get_hex(uint64_t* ptr )$/;"	f
+get_int	libc/u_scanf.c	/^int get_int(int* ptr )$/;"	f
+get_nextProcess	sys/task_management.c	/^PCB * get_nextProcess(PLIST *list)$/;"	f
+get_num_segs	sys/tarfs.c	/^int get_num_segs(char* num)$/;"	f
+get_page	sys/pmem_manager.c	/^void* get_page()$/;"	f
+get_pid	sys/task_management.c	/^uint32_t get_pid()$/;"	f
+get_update_in_progress_flag	sys/irq.c	/^int get_update_in_progress_flag() {$/;"	f
+get_user_entry	sys/idt.c	/^struct idt_entry get_user_entry(uint64_t target)$/;"	f
+getpid	libc/lib.c	/^uint32_t getpid()$/;"	f
+gid	include/sys/tarfs.h	/^	char gid[8];$/;"	m	struct:posix_header_ustar
+globRegs	include/sys/task_switch.h	/^struct globRegs$/;"	s
+gname	include/sys/tarfs.h	/^	char gname[32];$/;"	m	struct:posix_header_ustar
+head	sys/pmem_manager.c	/^Page* head = NULL;    \/\/ extern in header file$/;"	v
+hour	sys/irq.c	/^unsigned char hour;$/;"	v
+i	sys/pmem_manager.c	/^uint64_t i = 0;       \/\/ Global varaible$/;"	v
+idle	include/sys/task_management.h	/^PCB *idle;			\/\/ Pointer to idle Process$/;"	v
+idt	sys/idt.c	/^struct idt_entry idt[MAX_IDT];$/;"	v	typeref:struct:idt_entry
+idt_entry	sys/idt.c	/^struct idt_entry$/;"	s	file:
+idtr	sys/idt.c	/^static struct idtr_t idtr =$/;"	v	typeref:struct:idtr_t	file:
+idtr_t	sys/idt.c	/^struct idtr_t$/;"	s	file:
+inb	include/common.h	/^inline unsigned char inb(unsigned short port)$/;"	f
+index	include/sys/task_management.h	/^	uint64_t index; \/\/ index where PML4E was mapped to in the parent process PML4E$/;"	m	struct:pcb_t
+indexOf	sys/string.c	/^int indexOf (const char* base, const char* str) {$/;"	f
+indexOf_shift	sys/string.c	/^int indexOf_shift(const char* base, const char* str, int startIndex) {$/;"	f
+init_VM	sys/v_mem_manager.c	/^void init_VM(uint64_t phfree)$/;"	f
+init_fdtable	sys/tarfs.c	/^void init_fdtable()$/;"	f
+init_pic	sys/irq.c	/^void init_pic()$/;"	f
+init_shell	sys/v_mem_manager.c	/^void init_shell()	\/\/ sort of execve in current scenario$/;"	f
+init_task	sys/task_management.c	/^void init_task()$/;"	f
+init_timer	sys/irq.c	/^void init_timer()$/;"	f
+initdir	sys/dir.c	/^ int initdir (DIR *dirp)$/;"	f
+int32_t	include/defs.h	/^typedef __int32_t int32_t;$/;"	t
+irq_handler_0	sys/irq.c	/^void irq_handler_0(GREG regs)$/;"	f
+irq_handler_1	sys/irq.c	/^void irq_handler_1(registers_t regs)$/;"	f
+isr_common_stub	sys/irq.s	/^isr_common_stub:$/;"	l
+isr_common_stub	sys/isr.s	/^isr_common_stub:$/;"	l
+isr_common_stub2	sys/irq.s	/^isr_common_stub2:$/;"	l
+isr_common_stub_13	sys/isr.s	/^isr_common_stub_13:$/;"	l
+isr_common_stub_14	sys/isr.s	/^isr_common_stub_14:$/;"	l
+isr_common_stub_80	sys/isr.s	/^isr_common_stub_80:$/;"	l
+isr_handler_0	sys/isr.c	/^void isr_handler_0(registers_t regs)$/;"	f
+isr_handler_13	sys/isr.c	/^void isr_handler_13(registers_t regs)$/;"	f
+isr_handler_14	sys/isr.c	/^void isr_handler_14(registers_t regs)$/;"	f
+isr_handler_80	sys/isr.c	/^uint64_t isr_handler_80(GREG *regs)$/;"	f
+itoa	sys/printf.c	/^void itoa(uint64_t num, char * bu)$/;"	f
+k_malloc	sys/v_mem_manager.c	/^void *k_malloc(uint64_t no_bytes)$/;"	f
+kbuf	sys/irq.c	/^volatile unsigned char kbuf[128] = {0};$/;"	v
+kbuf_index	sys/irq.c	/^volatile int kbuf_index=-1;$/;"	v
+kern_pt	sys/kern_page_table.c	/^void kern_pt(void *v_kern, uint64_t pbase, uint64_t pfree)$/;"	f
+kernel_stack	include/sys/task_management.h	/^	uint64_t kernel_stack[256];	\/\/abhi check for the size$/;"	m	struct:pcb_t
+keyboard_map	sys/irq.c	/^unsigned char keyboard_map[128] =$/;"	v
+keyboard_map_shift	sys/irq.c	/^unsigned char keyboard_map_shift[128] =$/;"	v
+lastIndexOf	sys/string.c	/^int lastIndexOf (const char* base, const char* str) {$/;"	f
+length	include/sys/pmem_manager.h	/^	uint64_t base, length;$/;"	m	struct:smap_t
+linkname	include/sys/tarfs.h	/^	char linkname[100];$/;"	m	struct:posix_header_ustar
+list	sys/dir.c	/^void list()$/;"	f
+load_time	include/sys/task_management.h	/^	uint64_t load_time;$/;"	m	struct:pcb_t
+loader_stack	sys/main.c	/^uint32_t* loader_stack;$/;"	v
+lookintoQ	sys/process_que.c	/^int lookintoQ(PLIST *list, uint64_t id)$/;"	f
+lookintoQChild	sys/process_que.c	/^int lookintoQChild(PLIST *list, uint64_t id)$/;"	f
+m_map	sys/v_mem_manager.c	/^uint32_t m_map(uint64_t start_Vadd, uint64_t source_add, uint64_t f_size, uint64_t m_size)$/;"	f
+magic	include/sys/tarfs.h	/^	char magic[6];$/;"	m	struct:posix_header_ustar
+malloc	libc/malloc.c	/^void *malloc(uint64_t no_bytes)$/;"	f
+map_pageTable	sys/v_mem_manager.c	/^uint64_t map_pageTable(PCB *pb)$/;"	f
+minute	sys/irq.c	/^unsigned char minute;$/;"	v
+mm_st	include/sys/task_management.h	/^	VMA *mm_st;	\/\/ Pointer to First VMA Block of the Process $/;"	m	struct:pcb_t
+mode	include/sys/tarfs.h	/^	char mode[8];$/;"	m	struct:posix_header_ustar
+month	sys/irq.c	/^unsigned char month;$/;"	v
+mtime	include/sys/tarfs.h	/^	char mtime[12];$/;"	m	struct:posix_header_ustar
+n	include/syscall.h	/^SYSCALL_PROTO(1)(uint64_t n, uint64_t a1) $/;"	v
+n	include/syscall.h	/^SYSCALL_PROTO(2)(uint64_t n, uint64_t a1, uint64_t a2) $/;"	v
+n	include/syscall.h	/^SYSCALL_PROTO(3)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3) $/;"	v
+n	include/syscall.h	/^SYSCALL_PROTO(4)(uint64_t n, uint64_t a1, uint64_t a2, uint64_t a3, uint64_t a4) {$/;"	v
+name	include/sys/tarfs.h	/^	char name[100];$/;"	m	struct:posix_header_ustar
+name	include/sys/task_management.h	/^	char name[64];$/;"	m	struct:pcb_t
+newline	sys/irq.c	/^volatile int newline = 0;$/;"	v
+next	include/sys/pmem_manager.h	/^	struct page *next;$/;"	m	struct:page	typeref:struct:page::page
+next	include/sys/task_management.h	/^	struct pro_pt *next;			$/;"	m	struct:pro_pt	typeref:struct:pro_pt::pro_pt
+next	include/sys/task_management.h	/^	struct vma_t *next;$/;"	m	struct:vma_t	typeref:struct:vma_t::vma_t
+number	include/sys/tarfs.h	/^  int number;$/;"	m	struct:file_descriptor
+offset	include/sys/dirent.h	/^    uint64_t offset;$/;"	m	struct:dirent
+offset	include/sys/dirent.h	/^  uint64_t offset; \/\/8$/;"	m	struct:File
+offset1	sys/idt.c	/^	uint16_t offset1;$/;"	m	struct:idt_entry	file:
+offset2	sys/idt.c	/^	uint16_t offset2;$/;"	m	struct:idt_entry	file:
+offset3	sys/idt.c	/^	uint32_t offset3;$/;"	m	struct:idt_entry	file:
+open	libc/dir.c	/^uint64_t open(char* str)$/;"	f
+open_file	sys/tarfs.c	/^uint64_t open_file(char* filename)$/;"	f
+opendir	sys/dir.c	/^ DIR * opendir(const char *dirname)$/;"	f
+opfree	include/sys/v_mem_manager.h	/^uint64_t opfree;$/;"	v
+outb	include/common.h	/^inline void outb(unsigned short port, unsigned char val)$/;"	f
+p	include/sys/v_mem_manager.h	/^	uint64_t p[512];	$/;"	m	struct:ptab
+p_align	include/sys/tarfs.h	/^  char p_align[8]; \/* Alignment of segment *\/$/;"	m	struct:pheader
+p_filesz	include/sys/tarfs.h	/^  uint64_t p_filesz; \/* Size of segment in file *\/$/;"	m	struct:pheader
+p_flags	include/sys/tarfs.h	/^  char p_flags[4]; \/* Segment attributes *\/$/;"	m	struct:pheader
+p_malloc	sys/v_mem_manager.c	/^void *p_malloc(uint64_t no_bytes)$/;"	f
+p_memsz	include/sys/tarfs.h	/^  uint64_t p_memsz; \/* Size of segment in memory *\/$/;"	m	struct:pheader
+p_offset	include/sys/tarfs.h	/^  uint64_t p_offset; \/* Offset in file *\/$/;"	m	struct:pheader
+p_paddr	include/sys/tarfs.h	/^  char p_paddr[8]; \/* Reserved *\/$/;"	m	struct:pheader
+p_type	include/sys/tarfs.h	/^  char p_type[4]; \/* Type of segment *\/$/;"	m	struct:pheader
+p_vaddr	include/sys/tarfs.h	/^  uint64_t p_vaddr; \/* Virtual address in memory *\/$/;"	m	struct:pheader
+pad	include/sys/tarfs.h	/^	char pad[12];$/;"	m	struct:posix_header_ustar
+page	include/sys/pmem_manager.h	/^typedef struct page 		\/\/ Structure for a page in physical memory$/;"	s
+page_base	include/sys/pmem_manager.h	/^	uint64_t page_base;$/;"	m	struct:page
+parent	include/sys/dirent.h	/^  struct dirent parent; \/\/264$/;"	m	struct:File	typeref:struct:File::dirent
+path	include/sys/dirent.h	/^  char  path[256]; \/\/256$/;"	m	struct:File
+pcb_li	include/sys/task_management.h	/^	PCB *pcb_li;	\/\/ pointer to the PCB for a process$/;"	m	struct:pro_pt
+pcb_t	include/sys/task_management.h	/^struct pcb_t$/;"	s
+pheader	include/sys/tarfs.h	/^struct pheader$/;"	s
+pid	include/sys/task_management.h	/^	uint64_t pid;	\/\/ Process ID$/;"	m	struct:pcb_t
+pid_bitmap	sys/task_management.c	/^uint64_t pid_bitmap[32] = {0};$/;"	v
+posix_header_ustar	include/sys/tarfs.h	/^struct posix_header_ustar {$/;"	s
+power	sys/tarfs.c	/^int power(int x, int y)$/;"	f
+ppid	include/sys/task_management.h	/^	uint64_t ppid;	\/\/ Process Parent ID$/;"	m	struct:pcb_t
+prefix	include/sys/tarfs.h	/^	char prefix[155];$/;"	m	struct:posix_header_ustar
+prev	include/sys/task_management.h	/^	struct pro_pt *prev;			$/;"	m	struct:pro_pt	typeref:struct:pro_pt::pro_pt
+printf	sys/printf.c	/^int printf(const char *format, ...)$/;"	f
+printtime	sys/irq.c	/^void printtime(unsigned char hour, unsigned char minute, unsigned char seconds)$/;"	f
+pro_pt	include/sys/task_management.h	/^struct pro_pt$/;"	s
+process_stack	sys/v_mem_manager.c	/^uint64_t *process_stack()$/;"	f
+ps	libc/lib.c	/^void ps()$/;"	f
+psize_to_int	sys/tarfs.c	/^int psize_to_int(char* size)$/;"	f
+pt_mal	libc/malloc.c	/^char *pt_mal = NULL;$/;"	v
+ptab	include/sys/v_mem_manager.h	/^struct ptab$/;"	s
+ptov_map	sys/v_mem_manager.c	/^uint64_t ptov_map(uint64_t vadd)$/;"	f
+putch	sys/printf.c	/^int putch(char ch)$/;"	f
+putstr	sys/printf.c	/^int putstr(char *st)$/;"	f
+r10	include/sys/isr.h	/^	uint64_t r10;$/;"	m	struct:regis
+r10	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r10	include/sys/task_switch.h	/^	uint64_t r10;$/;"	m	struct:globRegs
+r11	include/sys/isr.h	/^	uint64_t r11;$/;"	m	struct:regis
+r11	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r11	include/sys/task_switch.h	/^	uint64_t r11;$/;"	m	struct:globRegs
+r12	include/sys/isr.h	/^	uint64_t r12;$/;"	m	struct:regis
+r12	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r12	include/sys/task_switch.h	/^	uint64_t r12;$/;"	m	struct:globRegs
+r13	include/sys/isr.h	/^	uint64_t r13;$/;"	m	struct:regis
+r13	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r13	include/sys/task_switch.h	/^	uint64_t r13;$/;"	m	struct:globRegs
+r14	include/sys/isr.h	/^	uint64_t r14;$/;"	m	struct:regis
+r14	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r14	include/sys/task_switch.h	/^	uint64_t r14;$/;"	m	struct:globRegs
+r15	include/sys/isr.h	/^	uint64_t r15;$/;"	m	struct:regis
+r15	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r15	include/sys/task_switch.h	/^	uint64_t r15;$/;"	m	struct:globRegs
+r8	include/sys/isr.h	/^	uint64_t r8;$/;"	m	struct:regis
+r8	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r8	include/sys/task_switch.h	/^	uint64_t r8;$/;"	m	struct:globRegs
+r9	include/sys/isr.h	/^	uint64_t r9;$/;"	m	struct:regis
+r9	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+r9	include/sys/task_switch.h	/^	uint64_t r9;$/;"	m	struct:globRegs
+rax	include/sys/isr.h	/^	uint64_t rax;$/;"	m	struct:regis
+rax	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rax	include/sys/task_switch.h	/^	uint64_t rax;$/;"	m	struct:globRegs
+rbp	include/sys/isr.h	/^	uint64_t rbp;$/;"	m	struct:regis
+rbp	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rbp	include/sys/task_switch.h	/^	uint64_t rbp;$/;"	m	struct:globRegs
+rbx	include/sys/isr.h	/^	uint64_t rbx;	$/;"	m	struct:regis
+rbx	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rbx	include/sys/task_switch.h	/^	uint64_t rbx;$/;"	m	struct:globRegs
+rcx	include/sys/isr.h	/^	uint64_t rcx;	$/;"	m	struct:regis
+rcx	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rcx	include/sys/task_switch.h	/^	uint64_t rcx;$/;"	m	struct:globRegs
+rdi	include/sys/isr.h	/^	uint64_t rdi;$/;"	m	struct:regis
+rdi	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rdi	include/sys/task_switch.h	/^	uint64_t rdi;$/;"	m	struct:globRegs
+rdx	include/sys/isr.h	/^	uint64_t rdx;$/;"	m	struct:regis
+rdx	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rdx	include/sys/task_switch.h	/^	uint64_t rdx;$/;"	m	struct:globRegs
+read	libc/dir.c	/^uint64_t read(uint64_t fd,uint64_t num, char* str )$/;"	f
+read_file	sys/tarfs.c	/^uint64_t read_file(uint64_t fd,uint64_t num, char* buffer)$/;"	f
+read_pheader	sys/tarfs.c	/^VMA* read_pheader(char* addr, struct elf_header* elf_base)$/;"	f
+read_rtc	sys/irq.c	/^void read_rtc() {$/;"	f
+read_tarfs	sys/tarfs.c	/^int read_tarfs(PCB* task, char* name)$/;"	f
+readdir	sys/dir.c	/^struct dirent * readdir (DIR *dirp)$/;"	f
+readelf	sys/tarfs.c	/^void readelf(char* addr, PCB *task)$/;"	f
+regis	include/sys/isr.h	/^struct regis$/;"	s
+registers	include/sys/isr.h	/^typedef struct registers$/;"	s
+registers_t	include/sys/isr.h	/^} registers_t; $/;"	t	typeref:struct:registers
+reload_gdt	sys/gdt.c	/^void reload_gdt() {$/;"	f
+reload_idt	sys/idt.c	/^void reload_idt() {$/;"	f
+removefromQ	sys/process_que.c	/^PCB *removefromQ(PLIST *list, uint64_t pid)$/;"	f
+reserved	include/sys/gdt.h	/^	uint32_t reserved;$/;"	m	struct:tss_t
+reserved	sys/idt.c	/^	uint32_t reserved;$/;"	m	struct:idt_entry	file:
+reverse	sys/printf.c	/^void reverse(char * buf, int len)$/;"	f
+rewinddir	sys/dir.c	/^ void rewinddir (DIR *dirp)$/;"	f
+rip	include/sys/task_management.h	/^	uint64_t rip;	\/\/ RIP register pointer$/;"	m	struct:pcb_t
+rsi	include/sys/isr.h	/^	uint64_t rsi;$/;"	m	struct:regis
+rsi	include/sys/isr.h	/^     uint64_t r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx, rax; \/\/ Pushed by pushq i.e. all general purpose registers$/;"	m	struct:registers
+rsi	include/sys/task_switch.h	/^	uint64_t rsi;$/;"	m	struct:globRegs
+rsp	include/sys/task_management.h	/^	uint64_t rsp;$/;"	m	struct:pcb_t
+rsp0	include/sys/gdt.h	/^	uint64_t rsp0;$/;"	m	struct:tss_t
+runableQ	sys/task_management.c	/^PLIST *runableQ;$/;"	v
+running	include/sys/task_management.h	/^PCB *running;			\/\/ Pointer to PCB of the process currently running$/;"	v
+scanf	sys/scanf.c	/^int scanf(const char *format, uint64_t ptr)$/;"	f
+schd_ON	sys/irq.c	/^volatile uint32_t schd_ON ;$/;"	v
+schedule1	sys/task_switch.c	/^void schedule1()$/;"	f
+scroll	sys/printf.c	/^void scroll()$/;"	f
+sd_dpl	sys/gdt.c	/^	uint64_t sd_dpl:2;     \/* segment descriptor priority level *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_gran	sys/gdt.c	/^	uint64_t sd_gran:1;    \/* limit granularity (byte\/page) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_hibase	sys/gdt.c	/^	uint64_t sd_hibase:40; \/* segment base address (msb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_hilimit	sys/gdt.c	/^	uint64_t sd_hilimit:4; \/* segment extent (msb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_lobase	sys/gdt.c	/^	uint64_t sd_lobase:24; \/* segment base address (lsb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_lolimit	sys/gdt.c	/^	uint64_t sd_lolimit:16;\/* segment extent (lsb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_p	sys/gdt.c	/^	uint64_t sd_p:1;       \/* segment descriptor present *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_type	sys/gdt.c	/^	uint64_t sd_type:5;    \/* segment type *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx1	sys/gdt.c	/^	uint64_t sd_xx1:3;     \/* avl, long and def32 (not used) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx2	sys/gdt.c	/^	uint64_t sd_xx2:8;     \/* reserved *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx3	sys/gdt.c	/^	uint64_t sd_xx3:19;    \/* reserved *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_zero	sys/gdt.c	/^	uint64_t sd_zero:5;    \/* must be zero *\/$/;"	m	struct:sys_segment_descriptor	file:
+sec	sys/irq.c	/^volatile uint64_t sec = 0;$/;"	v
+second	sys/irq.c	/^unsigned char second;$/;"	v
+seek	include/sys/tarfs.h	/^  uint64_t seek; $/;"	m	struct:file_descriptor
+selfRef	sys/task_management.c	/^uint64_t selfRef(uint64_t pml4e, uint64_t pdpe, uint64_t pde, uint64_t pte)$/;"	f
+self_refrence	sys/kern_page_table.c	/^void self_refrence(uint64_t v_a)$/;"	f
+setup_tss	sys/gdt.c	/^void setup_tss() {$/;"	f
+shift_ON	sys/irq.c	/^int shift_ON = 0;$/;"	v
+size	include/sys/tarfs.h	/^	char size[12];$/;"	m	struct:posix_header_ustar
+size	sys/gdt.c	/^	uint16_t size;$/;"	m	struct:gdtr_t	file:
+size	sys/idt.c	/^	uint16_t size;$/;"	m	struct:idtr_t	file:
+size_elf	sys/tarfs.c	/^uint64_t size_elf(char *size)$/;"	f
+size_left	libc/malloc.c	/^uint64_t size_left = 0;$/;"	v
+size_offset	sys/tarfs.c	/^int size_offset(char* size)$/;"	f
+size_to_int	sys/tarfs.c	/^int size_to_int(char* p)$/;"	f
+sleep_init	include/sys/task_management.h	/^  	uint64_t sleep_init;	$/;"	m	struct:pcb_t
+sleep_tm	include/sys/task_management.h	/^	uint64_t sleep_tm;	$/;"	m	struct:pcb_t
+smap	include/sys/pmem_manager.h	/^}__attribute__((packed)) *smap;$/;"	v	typeref:struct:smap_t
+smap_t	include/sys/pmem_manager.h	/^struct smap_t$/;"	s
+ss	include/sys/task_switch.h	/^	uint64_t ss;$/;"	m	struct:globRegs
+stack	sys/main.c	/^char stack[INITIAL_STACK_SIZE];$/;"	v
+start	sys/main.c	/^void start(uint32_t* modulep, void* physbase, void* physfree)$/;"	f
+start_add	include/sys/task_management.h	/^	uint64_t  start_add;  \/\/ Start address of a segment of elf binary$/;"	m	struct:vma_t
+starts_with	sys/string.c	/^int starts_with(const char * base, const char *prefix) \/\/returns 1 if match is found$/;"	f
+stder	libc/printf.c	/^uint64_t stder(const char* fmt, ...) $/;"	f
+strchr	sys/string.c	/^char *strchr(const char *s, int c)$/;"	f
+strcmp	sys/string.c	/^int strcmp(const char *s1,const char *s2)$/;"	f
+strcmp2	sys/tarfs.c	/^int strcmp2(char* str1, char*str2)$/;"	f
+strcpy	sys/string.c	/^char * strcpy(char *destination, const char *source) {$/;"	f
+streg	include/sys/isr.h	/^typedef struct regis streg;$/;"	t	typeref:struct:regis
+strlen	sys/string.c	/^int strlen(const char *str)$/;"	f
+strncmp	sys/string.c	/^int strncmp(const char *s1, const char *s2, int n)$/;"	f
+strncpy	sys/string.c	/^char *strncpy(char *dest, const char *src, int n)$/;"	f
+strstr	sys/string.c	/^char *strstr(const char *haystack, const char *needle)$/;"	f
+substring	sys/string.c	/^char *substring(char* dest , const char *s, int startIndex, int endIndex)$/;"	f
+switchTo	include/sys/task_management.h	/^PCB *switchTo;			\/\/ Pointer to process to switch to$/;"	v
+sys_putint	libc/putint.c	/^uint64_t sys_putint(int a)$/;"	f
+sys_putint	sys/syscall.c	/^uint64_t sys_putint(int a)$/;"	f
+sys_segment_descriptor	sys/gdt.c	/^struct sys_segment_descriptor {$/;"	s	file:
+syscalls	sys/syscall.c	/^uint64_t syscalls[32] = {0,(uint64_t)&printf};\/\/, (uint64_t)&putchar, (uint64_t)&puts};$/;"	v
+tail	include/sys/task_management.h	/^	struct pro_pt *tail;	\/\/ Points to end of the lists(only used in the head)$/;"	m	struct:pro_pt	typeref:struct:pro_pt::pro_pt
+tail	sys/pmem_manager.c	/^Page* tail = NULL;    \/\/ tail of the free list$/;"	v
+target_selector	sys/idt.c	/^	uint16_t target_selector;$/;"	m	struct:idt_entry	file:
+tick	sys/irq.c	/^uint64_t tick = 0;$/;"	v
+tss	sys/main.c	/^struct tss_t tss;$/;"	v	typeref:struct:tss_t
+tss_t	include/sys/gdt.h	/^struct tss_t {$/;"	s
+type	include/sys/pmem_manager.h	/^	uint32_t type;$/;"	m	struct:smap_t
+typeflag	include/sys/tarfs.h	/^	char typeflag[1];$/;"	m	struct:posix_header_ustar
+uStack_Top	sys/v_mem_manager.c	/^uint64_t uStack_Top;$/;"	v
+u_closedir	libc/dir.c	/^uint64_t u_closedir(DIR* directory)$/;"	f
+u_opendir	libc/dir.c	/^DIR* u_opendir(char* str)$/;"	f
+u_printf	libc/printf.c	/^uint64_t u_printf(const char* fmt, ...) $/;"	f
+u_readdir	libc/dir.c	/^struct dirent* u_readdir(DIR* directory)$/;"	f
+u_scanf	libc/u_scanf.c	/^uint64_t u_scanf(const char* format, uint64_t ptr) $/;"	f
+u_stack	include/sys/task_management.h	/^	uint64_t *u_stack;$/;"	m	struct:pcb_t
+uid	include/sys/tarfs.h	/^	char uid[8];$/;"	m	struct:posix_header_ustar
+uint16_t	include/defs.h	/^typedef __uint16_t uint16_t;$/;"	t
+uint32_t	include/defs.h	/^typedef __uint32_t uint32_t;$/;"	t
+uint64_t	include/defs.h	/^typedef __uint64_t uint64_t;$/;"	t
+uname	include/sys/tarfs.h	/^	char uname[32];$/;"	m	struct:posix_header_ustar
+unused	include/sys/gdt.h	/^	uint32_t unused[11];$/;"	m	struct:tss_t
+update_cursor	sys/printf.c	/^void update_cursor()$/;"	f
+user_int2hex	libc/printf.c	/^int user_int2hex(int value, char* buffer, int  total)$/;"	f
+user_long2hex	libc/printf.c	/^int user_long2hex(unsigned long value, char* buffer, int total)$/;"	f
+user_putchar	libc/printf.c	/^int user_putchar(char a, char* buffer , int total)$/;"	f
+user_putint	libc/printf.c	/^int user_putint(int value, char* buffer, int total)$/;"	f
+user_putlong	libc/printf.c	/^int user_putlong(unsigned long value, char* buffer, int total)$/;"	f
+user_puts	libc/printf.c	/^int user_puts(char* str,char* buffer, int total)$/;"	f
+va_arg	include/stdarg.h	5;"	d
+va_copy	include/stdarg.h	7;"	d
+va_end	include/stdarg.h	6;"	d
+va_list	include/stdarg.h	/^typedef __builtin_va_list va_list;$/;"	t
+va_start	include/stdarg.h	4;"	d
+version	include/sys/tarfs.h	/^	char version[2];$/;"	m	struct:posix_header_ustar
+video	sys/printf.c	/^uint64_t video = 0xB8000;		\/\/ global variable pointing to video memory$/;"	v
+vm_cast	sys/pmem_manager.c	/^uint64_t vm_cast = 0; \/\/ Extern in same heder$/;"	v
+vma_t	include/sys/task_management.h	/^struct vma_t$/;"	s
+waitQ	sys/task_management.c	/^PLIST *waitQ;$/;"	v
+write	sys/printf.c	/^int write(int fd,volatile char* str, int n)$/;"	f
+x_axis	sys/printf.c	/^int x_axis = 0, y_axis = 0;$/;"	v
+y_axis	sys/printf.c	/^int x_axis = 0, y_axis = 0;$/;"	v
+year	sys/irq.c	/^unsigned int year;$/;"	v
+yield	libc/yield.c	/^void yield()$/;"	f
+zero_page	sys/pmem_manager.c	/^void zero_page(uint64_t pa)$/;"	f
+zero_size	sys/tarfs.c	/^char zero_size[12] = "000000000000";$/;"	v
